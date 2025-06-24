@@ -1,4 +1,4 @@
-# Maple Frog Studio - Hobby Trader Package 
+# Maple Frog Studio - Demo Lightweight Charts from TradingView
 >**Warning**  
 >Work in progress, not production ready, poor documentation :)  
 
