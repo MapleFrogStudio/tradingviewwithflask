@@ -24,7 +24,15 @@ def home():
     items = ['apple', 'banana', 'cherry']
     return render_template('index.html', name=name, items=items)    
 
-@main.route('/chart')
-def chart():
+@main.route('/chart1')
+def chart1():
+    return render_template("chart1.html")
+
+@main.route('/chart2')
+def chart2():
     price_data = getPriceData()
     return render_template("chart2.html", price_data=json.dumps(price_data))
+
+@main.route('/sma1')
+def sma1():
+    return render_template("sma1.html")

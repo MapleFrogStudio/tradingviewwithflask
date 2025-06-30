@@ -1,0 +1,20 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+#container {
+    width: 90%;
+    height: 400px;
+    border: 2px dashed #ccc;
+    position: relative;
+    margin: auto;
+    margin-bottom: 1em;
+}
+#price-data {
+    background: #f7f7f7;
+    padding: 1em;
+    border-top: 1px solid #ddd;
+    white-space: pre-wrap;
+    font-family: monospace;
+}

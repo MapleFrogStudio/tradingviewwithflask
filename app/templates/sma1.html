@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candlestick Chart with Lightweight Charts</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+    #chart-placeholder {
+      width: 90%;
+      height: 400px;
+      border: 2px dashed #ccc;
+      position: relative;
+      margin: auto;
+      margin-bottom: 1em;
+    }
+    #price-data {
+      background: #f7f7f7;
+      padding: 1em;
+      border-top: 1px solid #ddd;
+      white-space: pre-wrap;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>All data in HTML Page</h1>
+
+  <div id="chart-placeholder"></div>
+
+
+  <!-- Load the standalone UMD build from CDN using a specific version 
+  See the github repo for latest releases: https://github.com/tradingview/lightweight-charts/releases
+  BE careful might have breaking changes in the latest versions 
+  
+  <script src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js"></script>
+  -->
+  <script src="https://unpkg.com/lightweight-charts@5.0.8/dist/lightweight-charts.standalone.production.js"></script>
+
+  <script>
+    // Lightweight Charts™ Example: Moving average indicator
+    // https://tradingview.github.io/lightweight-charts/tutorials/demos/moving-average
+    
+    
+    let randomFactor = 25 + Math.random() * 25;
+    const samplePoint = i =>
+        i *
+            (0.5 +
+                Math.sin(i / 10) * 0.2 +
+                Math.sin(i / 20) * 0.4 +
+                Math.sin(i / randomFactor) * 0.8 +
+                Math.sin(i / 500) * 0.5) +
+        200;
+    
+    function generateLineData(numberOfPoints = 500, endDate) {
+        randomFactor = 25 + Math.random() * 25;
+        const res = [];
+        const date = endDate || new Date(Date.UTC(2018, 0, 1, 12, 0, 0, 0));
+        date.setUTCDate(date.getUTCDate() - numberOfPoints - 1);
+        for (let i = 0; i < numberOfPoints; ++i) {
+            const time = date.getTime() / 1000;
+            const value = samplePoint(i);
+            res.push({
+                time,
+                value,
+            });
+    
+            date.setUTCDate(date.getUTCDate() + 1);
+        }
+    
+        return res;
+    }
+    
+    function randomNumber(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+    
+    function randomBar(lastClose) {
+        const open = +randomNumber(lastClose * 0.95, lastClose * 1.05).toFixed(2);
+        const close = +randomNumber(open * 0.95, open * 1.05).toFixed(2);
+        const high = +randomNumber(
+            Math.max(open, close),
+            Math.max(open, close) * 1.1
+        ).toFixed(2);
+        const low = +randomNumber(
+            Math.min(open, close) * 0.9,
+            Math.min(open, close)
+        ).toFixed(2);
+        return {
+            open,
+            high,
+            low,
+            close,
+        };
+    }
+    
+    function generateCandleData(numberOfPoints = 250, endDate) {
+        const lineData = generateLineData(numberOfPoints, endDate);
+        let lastClose = lineData[0].value;
+        return lineData.map(d => {
+            const candle = randomBar(lastClose);
+            lastClose = candle.close;
+            return {
+                time: d.time,
+                low: candle.low,
+                high: candle.high,
+                open: candle.open,
+                close: candle.close,
+            };
+        });
+    }
+    
+    const chartOptions = {
+        layout: {
+            textColor: 'black',
+            background: { type: 'solid', color: 'white' },
+        },
+    };
+    /** @type {import('lightweight-charts').IChartApi} */
+    // const chart = createChart(document.getElementById('chart-placeholder'), chartOptions);
+    const chart = LightweightCharts.createChart(document.getElementById('chart-placeholder'), chartOptions);
+    const barData = generateCandleData(500);
+    
+    function calculateMovingAverageSeriesData(candleData, maLength) {
+        const maData = [];
+    
+        for (let i = 0; i < candleData.length; i++) {
+            if (i < maLength) {
+                // Provide whitespace data points until the MA can be calculated
+                maData.push({ time: candleData[i].time });
+            } else {
+                // Calculate the moving average, slow but simple way
+                let sum = 0;
+                for (let j = 0; j < maLength; j++) {
+                    sum += candleData[i - j].close;
+                }
+                const maValue = sum / maLength;
+                maData.push({ time: candleData[i].time, value: maValue });
+            }
+        }
+    
+        return maData;
+    }
+    
+    const maData = calculateMovingAverageSeriesData(barData, 20);
+    // Add a line series for the SMA
+    const maSeries = chart.addSeries('Line', {
+    color: 'blue',
+    lineWidth: 2,
+    priceLineVisible: false, // optional
+    });
+    
+    maSeries.setData(maData);
+    
+    const candlestickSeries = chart.addSeries('CandlestickSeries', {
+        upColor: '#26a69a',
+        downColor: '#ef5350',
+        borderVisible: false,
+        wickUpColor: '#26a69a',
+        wickDownColor: '#ef5350',
+    });
+    candlestickSeries.setData(barData);
+
+  </script>
+</body>
+</html>    
