@@ -1,2 +1,4 @@
 flask>=2.0
+yfinance>=0.1.70
+pandas>=1.0
 

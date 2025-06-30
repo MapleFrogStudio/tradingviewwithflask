@@ -4,8 +4,8 @@ html, body {
     font-family: sans-serif;
 }
 #container {
-    width: 90%;
-    height: 400px;
+    width: 95%;
+    height: 80vh;
     border: 2px dashed #ccc;
     position: relative;
     margin: auto;

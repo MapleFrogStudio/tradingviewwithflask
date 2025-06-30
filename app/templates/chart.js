@@ -33,9 +33,37 @@ return [
 
 // Create the Lightweight Chart within the container element
 const chart = LightweightCharts.createChart(
-    document.getElementById('container')
+    document.getElementById('container'),
+        {
+          layout: {
+            background: { color: "#222" },
+            textColor: "#C3BCDB",
+          },
+          grid: {
+            vertLines: { color: "#444" },
+            horzLines: { color: "#444" },
+          },
+        }
 );     
-        
+
+// Customizing the Crosshair
+chart.applyOptions({
+    crosshair: {
+        // Vertical crosshair line (showing Date in Label)
+        vertLine: {
+            color: '#9B7DFF',
+            labelBackgroundColor: '#9B7DFF',
+        },
+
+        // Horizontal crosshair line (showing Price in Label)
+        horzLine: {
+            color: '#9B7DFF',
+            labelBackgroundColor: '#9B7DFF',
+        },
+    },
+});
+
+
 // Generate sample data to use within a candlestick series
 const candleStickData = getPriceData1();
 
@@ -44,5 +72,6 @@ const mainSeries = chart.addSeries(LightweightCharts.CandlestickSeries);
 // Set the data for the Main Series
 mainSeries.setData(candleStickData);
 
-
 window.addEventListener('resize', () => { chart.resize(window.innerWidth, window.innerHeight);});
+
+chart.timeScale().fitContent();
