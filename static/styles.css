@@ -5,12 +5,13 @@ html, body {
 }
 #container {
     width: 95%;
-    height: 80vh;
+    height: 1000px;
     border: 2px dashed #ccc;
     position: relative;
     margin: auto;
     margin-bottom: 1em;
 }
+
 #price-data {
     background: #f7f7f7;
     padding: 1em;

@@ -65,7 +65,9 @@ chart.applyOptions({
 
 
 // Generate sample data to use within a candlestick series
-const candleStickData = getPriceData1();
+// const candleStickData = getPriceData1();
+// Pass Data from python
+const data = {{ price_data | safe }};
 
 // Create the Main Series (Candlesticks)
 const mainSeries = chart.addSeries(LightweightCharts.CandlestickSeries);

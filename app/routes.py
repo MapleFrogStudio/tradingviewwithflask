@@ -84,9 +84,15 @@ def chart1():
 
 @main.route('/chart2')
 def chart2():
+    price_data = getPriceData2()
+    return render_template("chart2.html", price_data=json.dumps(price_data))
+
+@main.route('/chart3')
+def chart3():
     data = getPricesFromYahoo(['AAPL'])
     price_data = df_to_json(data)
-    return render_template("chart2.html", price_data=json.dumps(price_data))
+    return render_template("chart3.html", price_data=json.dumps(price_data))
+
 
 @main.route('/sma1')
 def sma1():
