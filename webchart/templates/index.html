@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trading Tools</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Trading Tools</h1>
+
+    <p>The Lightweigth charts open source library from TradingView uses a JSON candlestick data structure like this:</p>
+    <pre>
+    [
+        { "open": 10,    "high": 10.63, "low": 9.49,  "close": 9.55,  "time": 1642427876 }, 
+        { "open": 9.55,  "high": 10.30, "low": 9.42,  "close": 9.94,  "time": 1642514276 }, 
+        { "open": 9.94,  "high": 10.17, "low": 9.92,  "close": 9.78,  "time": 1642600676 }, 
+        { "open": 9.78,  "high": 10.59, "low": 9.18,  "close": 9.51,  "time": 1642687076 }, 
+        { "open": 9.51,  "high": 10.46, "low": 9.10,  "close": 10.17, "time": 1642773476 }, 
+        { "open": 10.17, "high": 10.96, "low": 10.16, "close": 10.47, "time": 1642859876 }, 
+        { "open": 10.47, "high": 11.39, "low": 10.40, "close": 10.81, "time": 1642946276 }, 
+        { "open": 10.81, "high": 11.60, "low": 10.30, "close": 10.75, "time": 1643032676 }, 
+        { "open": 10.75, "high": 11.60, "low": 10.49, "close": 10.93, "time": 1643119076 }, 
+        { "open": 10.93, "high": 11.53, "low": 10.76, "close": 10.96, "time": 1643205476 }
+    ]        
+    </pre>
+    <p>or</p>
+    <pre>
+    [
+        { "open": 120.45, "high": 130.12, "low": 115.23, "close": 118.76, "time": "2025-02-01T18:12:33+01:00" },
+        { "open": 118.76, "high": 127.89, "low": 114.50, "close": 123.40, "time": "2025-02-02T18:12:33+01:00" },
+        { "open": 123.40, "high": 128.35, "low": 121.10, "close": 122.15, "time": "2025-02-03T18:12:33+01:00" },
+        { "open": 122.15, "high": 135.40, "low": 117.85, "close": 121.90, "time": "2025-02-04T18:12:33+01:00" },
+        { "open": 121.90, "high": 132.78, "low": 119.65, "close": 130.25, "time": "2025-02-05T18:12:33+01:00" },
+        { "open": 130.25, "high": 139.60, "low": 129.90, "close": 136.80, "time": "2025-02-08T18:12:33+01:00" },
+        { "open": 136.80, "high": 145.30, "low": 133.75, "close": 140.95, "time": "2025-02-09T18:12:33+01:00" },
+        { "open": 140.95, "high": 148.90, "low": 135.60, "close": 138.70, "time": "2025-02-10T18:12:33+01:00" },
+        { "open": 138.70, "high": 144.80, "low": 137.25, "close": 141.10, "time": "2025-02-11T18:12:33+01:00" },
+        { "open": 141.10, "high": 146.25, "low": 140.40, "close": 144.30, "time": "2025-02-12T18:12:33+01:00" }
+    ]        
+    </pre>
+
+    <div><a href="/demo">Demo Candlesticks Chart with fake prices</a></div>
+    <div><a href="/chart">Demo Candlesticks Chart with Yahoo Finance data</a></div>
+    
+</body>
+</html>

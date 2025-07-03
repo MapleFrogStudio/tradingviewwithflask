@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trading Tools</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+      <!-- Load the CDN version of lightweight charts -->
+    <script
+        type="text/javascript"
+        src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"
+    ></script>
+    <script>
+        const webdata = {{ webdata | tojson | safe }};
+    </script>       
+    <script type="text/javascript" src="{{ url_for('static', filename='chart.js') }}" defer></script>
+</head>
+<body>
+    <h1>Candlestick chart : {{ webdata.ticker }}</h1>
+
+        <div id="button_section">
+        <button class="chart-btn" id="btn1">Action 1</button>
+        <button class="chart-btn" id="btn2">Action 2</button>
+        <button class="chart-btn" id="btn3">Action 3</button>
+    </div>
+
+    <div id="chart_container"><!-- Chart view will be displayed here --></div>
+    
+</body>
+</html>

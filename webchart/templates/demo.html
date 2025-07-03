@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trading Tools</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+      <!-- Load the CDN version of lightweight charts -->
+    <script
+        type="text/javascript"
+        src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"
+    ></script>
+    <!-- Required in HTML file because render_template() does not support assignment in an external js file.}} -->
+    <script>
+        const webdata = {{ webdata | tojson | safe }};
+    </script>    
+    <script type="text/javascript" src="{{ url_for('static', filename='chart.js') }}" defer></script>
+</head>
+<body>
+    <h1>Candlestick chart : {{ webdata.ticker }}</h1>
+
+    <div id="chart_container"><!-- Chart view will be displayed here --></div>
+    
+</body>
+</html>
