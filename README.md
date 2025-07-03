@@ -4,7 +4,8 @@
 >Work in progress, not production ready, poor documentation :)  
 
 Demo of using Tradingview's lightweight charts implemented in a Flask web project. 
-Using Hard coded json data defined in routes.py file.  
+See official TradingView Documentation : https://github.com/tradingview/lightweight-charts/releases  
+ 
 
 Checkout the project [wiki](https://github.com/MapleFrogStudio/tradingviewwithflask/wiki) for in depth explanations.  
 
