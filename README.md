@@ -4,7 +4,8 @@
 >Work in progress, not production ready, poor documentation :)  
 
 Demo of using Tradingview's lightweight charts implemented in a Flask web project. 
-See official TradingView Documentation : https://github.com/tradingview/lightweight-charts/releases  
+See official TradingView APi Documentation : https://tradingview.github.io/lightweight-charts/docs/api  
+See official TradingView Documentation - Release Notes : https://github.com/tradingview/lightweight-charts/releases  
  
 
 Checkout the project [wiki](https://github.com/MapleFrogStudio/tradingviewwithflask/wiki) for in depth explanations.  
