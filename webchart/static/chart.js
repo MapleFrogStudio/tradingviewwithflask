@@ -47,6 +47,18 @@ const mainSeries = chart.addSeries(LightweightCharts.CandlestickSeries);
 // Set the data for the Main Series
 mainSeries.setData(candleStickData);
 
+
+// ADDING OPTIONAL LINE SERIES DATA, example: Simple MOving Average (SMA)
+// Add SMA line series
+const smaSeries = chart.addSeries(LightweightCharts.LineSeries);
+smaSeries.applyOptions({
+    color: '#FFA500',  // orange
+    lineWidth: 2,
+    lineStyle: LightweightCharts.LineStyle.Solid, // Optional
+});
+// Set SMA data
+smaSeries.setData(webdata.sma3);
+
 window.addEventListener('resize', () => { chart.resize(window.innerWidth, window.innerHeight);});
 
 //chart.timeScale().fitContent();

@@ -49,6 +49,26 @@ def df_to_json(df):
     ]  
     return result   
 
+def df_to_json_2(df):
+    df = df.copy()
+    df.index = pd.to_datetime(df.index)
+    df = df.dropna(how="all")  # Drop rows where all values are NaN
+
+    result = []
+
+    for index, row in df.iterrows():
+        entry = {"time": index.isoformat()}
+        for col, val in row.items():
+            if pd.isna(val):
+                continue  # Skip NaNs
+            elif isinstance(val, float):
+                entry[col] = round(val, 2)
+            else:
+                entry[col] = val
+        result.append(entry)
+
+    return result
+
 def getPricesFromYahoo(symbols=['AAPL']):
     if not isinstance(symbols,list):
         raise ValueError("Symbols must be a list.")
