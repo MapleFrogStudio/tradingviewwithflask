@@ -48,9 +48,15 @@ def demo():
 @main.route('/chart')
 def chart():
     df_prices = data.getPricesFromYahoo(['AAPL'])  # Fetches real data from Yahoo Finance
-    json_prices = data.df_to_json(df_prices)  # Converts DataFrame to JSON format
+    json_prices = data.prices_to_json(df_prices)  # Converts DataFrame to JSON format
     page_data = {
         "ticker": "AAPL",
         "prices": json_prices
     }
     return render_template('chart.html', webdata=page_data)    
+
+@main.route('/sma')
+def sma():
+    page_data = None
+    return render_template('sma.html', webdata=page_data)   
+

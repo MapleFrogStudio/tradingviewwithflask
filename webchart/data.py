@@ -34,6 +34,24 @@ def fake_prices_datetime():
         { "open": 138.70, "high": 144.80, "low": 137.25, "close": 141.10, "time": "2025-02-11T18:12:33+01:00" },
         { "open": 141.10, "high": 146.25, "low": 140.40, "close": 144.30, "time": "2025-02-12T18:12:33+01:00" }
     ]
+
+def prices_to_json(df):
+    df = df[['Open', 'High', 'Low', 'Close', 'Volume']].copy()
+    df.index = pd.to_datetime(df.index)
+    df = df.dropna()
+    result = [
+        {
+            'open': round(row.Open, 2),
+            'high': round(row.High, 2),
+            'low': round(row.Low, 2),
+            'close': round(row.Close, 2),
+            'volume': int(row.Volume) if not pd.isna(row.Volume) else 0,
+            'time': index.isoformat()
+        }
+        for index,row in df.iterrows()
+    ]  
+    return result   
+
     
 def df_to_json(df):
     df = df[['Open', 'High', 'Low', 'Close']].copy()
@@ -80,11 +98,11 @@ def getPricesFromYahoo(symbols=['AAPL']):
     #data = yf.download(symbols, interval="1d", ignore_tz = True, prepost=False)
     end_dt = date.today()
     start_dt = end_dt - relativedelta(years=3)
-    data = yf.download(symbols, start=start_dt, end=end_dt, interval='1d', ignore_tz = True, prepost=False)
+    data = yf.download(symbols, start=start_dt, end=end_dt, interval='1d', ignore_tz = True, prepost=False, auto_adjust=True)
 
     data.index.name = 'Datetime'
     data = data.loc[(slice(None)),(slice(None),slice(None))].copy()
-    data = data.stack()
+    data = data.stack(future_stack=True)
     data = data.reset_index()
     data.rename(columns={'level_1': 'Symbol'}, inplace=True)
     data.rename(columns={'level_0': 'Datetime'}, inplace=True)
