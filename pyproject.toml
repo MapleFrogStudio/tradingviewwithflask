@@ -9,7 +9,8 @@ dependencies = [
     "Flask>=2.0.0",
     "python-dotenv>=1.0.0",
     "yfinance>=0.1.70",
-    "pandas>=1.0" 
+    "pandas>=1.0",
+    "technical-analysis>=0.0.7"
 ]
 
 [project.optional-dependencies]
@@ -19,7 +20,7 @@ dev = [
 
 
 [tool.setuptools]
-packages = ["webchart"]
+packages = ["webchart", "ta_tools"]
 
 [build-system]
 requires = ["setuptools", "wheel"]

@@ -1,3 +1,5 @@
+# https://pypi.org/project/technical-analysis/, https://github.com/trevormcguire/technical-analysis
+
 import pandas as pd
 import yfinance as yf
 import json
@@ -89,3 +91,15 @@ def getPricesFromYahoo(symbols=['AAPL']):
     data.set_index('Datetime', inplace=True)
     data.columns.name = None
     return data 
+
+def add_indicators(df):
+    df['SMA20'] = df['Close'].rolling(window=20).mean()
+    df['EMA20'] = df['Close'].ewm(span=20, adjust=False).mean()
+    delta = df['Close'].diff()
+    gain = (delta.where(delta > 0, 0)).rolling(window=14).mean()
+    loss = (-delta.where(delta < 0, 0)).rolling(window=14).mean()
+    rs = gain / loss
+    df['RSI14'] = 100 - (100 / (1 + rs))
+    
+    
+    return df   
