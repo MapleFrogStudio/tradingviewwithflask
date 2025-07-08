@@ -29,7 +29,7 @@ if (sanityChecks(webdata)) {
   const totalBars = candleStickData.length;
   const N = 300;  // number of bars you want to display
 
-  // Get the last N time values
+  // Get the last N time values to display on the chart
   const startIndex = Math.max(0, totalBars - N);
   const fromTime = candleStickData[startIndex].time;
   const toTime = candleStickData[totalBars - 1].time;

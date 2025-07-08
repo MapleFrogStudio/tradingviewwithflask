@@ -11,7 +11,7 @@
     <script>
         const webdata = {{ webdata | tojson | safe }};
     </script>       
-    <script type="text/javascript" src="{{ url_for('static', filename='chart.js') }}" defer></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='chart2.js') }}" defer></script>
 </head>
 <body>
     <h1>SMA chart : {{ webdata.ticker }}</h1>
