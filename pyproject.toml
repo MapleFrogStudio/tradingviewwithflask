@@ -10,7 +10,7 @@ dependencies = [
     "python-dotenv>=1.0.0",
     "yfinance>=0.1.70",
     "pandas>=1.0",
-    "technical-analysis>=0.0.7"
+    "ta-lib"
 ]
 
 [project.optional-dependencies]

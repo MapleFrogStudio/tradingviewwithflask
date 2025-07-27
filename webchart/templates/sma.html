@@ -7,10 +7,13 @@
     <script
         type="text/javascript"
         src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"
+        const webdata = {{ webdata | tojson | safe }};
     ></script>
+    <!-- Need to place webdata in the Global Context so the external JS Files can access it  
     <script>
         const webdata = {{ webdata | tojson | safe }};
-    </script>       
+    </script> 
+    -->      
     <script type="text/javascript" src="{{ url_for('static', filename='chart2.js') }}" defer></script>
 </head>
 <body>

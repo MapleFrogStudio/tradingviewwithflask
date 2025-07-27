@@ -11,7 +11,8 @@ See official TradingView Documentation - Release Notes : https://github.com/trad
 Checkout the project [wiki](https://github.com/MapleFrogStudio/tradingviewwithflask/wiki) for in depth explanations.  
 
 ## Installation  
-This installation process uses pyproject.toml instead of a requirements.txt file.  
+We are moviung to the pyproject.toml installation process. But we have a special library (ta-lib) that is a wrapper around a C program. I could not find a way of using TOML syntax to install a precompiled wheel file, so we will use requirements.txt for this special case.  
+    
 Open a powershell console and type:
 ```  
 > python --version  
@@ -20,6 +21,7 @@ Open a powershell console and type:
 > python -m venv env
 > .\env\Scripts\Activate  
 > python -m pip install --upgrade pip
+> pip install -r requirements.txt
 > pip install -e .
 ```
 Also a good practice is to setup some environment variables to secure Flask. At the root of the project create a file named .env and add the following lines:  
